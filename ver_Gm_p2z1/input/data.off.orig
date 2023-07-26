@@ -1,0 +1,24 @@
+ &OFFLINE_PARM01
+  UvelFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DDuvel/DDuvel',
+  VvelFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DDvvel/DDvvel',
+  WvelFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DDwvel/DDwvel',
+  GMwxFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DGMkwx/DGMkwx',
+  GMwyFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DGMkwy/DGMkwy',
+  GMwzFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DGMkwz/DGMkwz',
+# ConvFile= 'input_off/Convtave',
+  SaltFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DDsalt/DDsalt',
+  ThetFile= '/nobackup1/stephdut/ECCO_Iter3.73daily/DDtheta/DDtheta',
+  SFluxFile='/nobackup1/stephdut/ECCO_Iter3.73daily/DFOSflux/DFOSflux',
+# HFluxFile=' ',
+  KPP_DiffSFile='/nobackup1/stephdut/ECCO_Iter3.73daily/DKPPdiffs/DKPPdiffs',
+  KPP_ghatKFile='/nobackup1/stephdut/ECCO_Iter3.73daily/DKPPghatK/DKPPghatK',
+### offGen2DFile='/nobackup1/stephdut/ECCO_Iter3.73daily/SIarea/SIarea',
+ &end
+
+ &OFFLINE_PARM02
+  offlineIter0=78912,
+  deltaToffline=3600.,
+  offlineForcingPeriod=86400.,
+  offlineForcingCycle=31104000.,
+ &end
+

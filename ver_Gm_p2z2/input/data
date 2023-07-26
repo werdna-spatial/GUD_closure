@@ -1,0 +1,112 @@
+#
+# ******************************
+# Model parameters
+# Continuous equation parameters
+# ******************************
+&PARM01
+tRef= 24.0 , 23.0 , 22.0 , 21.0 , 20.0 ,
+      19.0 , 18.0 , 17.0 , 16.0 , 15.0 ,
+      14.0 , 13.0 , 12.0 , 11.0 , 10.0 ,
+       9.0 ,  8.0 ,  7.0 ,  6.0,   5.0 ,
+       4.0 ,  3.0 ,  2.0 ,
+sRef= 34.65, 34.75, 34.82, 34.87, 34.90,
+      34.90, 34.86, 34.78, 34.69, 34.60,
+      34.58, 34.62, 34.68, 34.72, 34.73,
+      34.74, 34.73, 34.73, 34.72, 34.72,
+      34.71, 34.70, 34.69,
+no_slip_sides=.false.,
+no_slip_bottom=.TRUE.,
+viscAz=1.E-3,
+viscAh=1.E4,
+diffKhT=1.E2,
+diffKzT=1.E-5,
+diffKhS=1.E2,
+diffKzS=1.E-5,
+beta=1.E-11,
+tAlpha=2.E-4,
+sBeta =7.4E-4,
+gravity=9.81,
+gBaro=9.81,
+rigidLid=.FALSE.,
+implicitFreeSurface=.true.,
+eosType='POLY3',
+saltStepping=.TRUE.,
+tempStepping=.TRUE.,
+momStepping=.TRUE.,
+implicitDiffusion=.true.,
+implicitViscosity=.true.,
+allowFreezing=.false.,
+useSingleCpuIO=.TRUE.,
+useCDscheme=.FALSE.,
+tempAdvScheme = 3,
+saltAdvScheme = 3,
+writeBinaryPrec= 64,
+readBinaryPrec= 64,
+/
+
+# **************************
+# Elliptic solver parameters
+# **************************
+&PARM02
+cg2dMaxIters=300,
+cg2dTargetResidual=1.E-7,
+/
+
+# ************************
+# Time stepping parameters
+# ************************
+&PARM03
+ nIter0=0,
+# nTimeSteps=4,
+ nTimeSteps=28800,
+ deltaTmom=10800.,
+ deltaTtracer=10800.,
+ deltaTClock =10800.,
+ abEps=0.1,
+ pChkptFreq  = 31104000.,
+ chkptFreq   = 31104000.,
+#dumpFreq    = 31104000.,
+ dumpInitAndLast=.FALSE.,
+#taveFreq    = 31104000.,
+# monitorFreq = 2592000.,
+# monitorFreq = 1.,
+ dumpFreq    = 432000.,
+ taveFreq    = 432000.,
+ monitorFreq = 432000.,
+#monitorFreq = 31104000.,
+ tauThetaClimRelax=0.,
+ tauSaltClimRelax=0.,
+ periodicExternalForcing=.TRUE.,
+ externForcingPeriod=2592000.,
+ externForcingCycle=31104000.,
+/
+
+# *******************
+# Gridding parameters
+# *******************
+&PARM04
+usingCartesianGrid=.FALSE.,
+usingSphericalPolarGrid=.TRUE.,
+delX=360*1.E0,
+delY=160*1.E0,
+delZ=10.,10.,15.,20.,20.,25.,35.,50.,75.,
+100.,150.,200.,275.,350.,415.,450.,500.,
+500.,500.,500.,500.,500.,500.,
+xgOrigin=0,
+ygOrigin=-80.,
+/
+
+# **********
+# Data Files
+# **********
+&PARM05
+bathyFile=       '/lustre/isaac/proj/UTK0105/Darwin/data/eccov3_R8/bathy_fl.bin',
+#hydrogThetaFile= 'input/LEVITUS_1x1_ptmp_NEW_corK',
+#hydrogSaltFile=  'input/LEVITUS_1x1_salt_NEW_corK',
+zonalWindFile=   '',
+meridWindFile=   '',
+thetaClimFile=   '',
+saltClimFile=    '',
+surfQFile=       '',
+EmPmRFile=       '',
+/

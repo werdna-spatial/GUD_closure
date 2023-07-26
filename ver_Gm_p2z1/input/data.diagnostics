@@ -1,0 +1,86 @@
+# Gud diagnostics
+# ==================
+# PAR                 Photosynthetically active radiation
+# PP                  Primary production
+# Nfix                Nitrogen fixation
+# Rstar01             Rstar^PO4 of Phy01
+# Diver1              # Phy species over absolute threshold'
+# Diver2              # Phy species over threshold for proportion of biomass'
+# Diver3              # Phy species constituting bulk of biomass'
+# Diver4              # Phy species over threshold for ratio to maximum species'
+#
+ &diagnostics_list
+#
+  filename( 1) = '3d',
+#  frequency(1) = 2592000.,
+  frequency(1) = 432000.,
+  fields( 1,1) = 'TRAC01  ',
+  fields( 2,1) = 'TRAC02  ',
+  fields( 3,1) = 'TRAC03  ',
+  fields( 4,1) = 'TRAC04  ',
+  fields( 5,1) = 'TRAC05  ',
+  fields( 6,1) = 'TRAC06  ',
+  fields( 7,1) = 'TRAC07  ',
+  fields( 8,1) = 'TRAC08  ',
+  fields( 9,1) = 'TRAC09  ',
+  fields(10,1) = 'TRAC10  ',
+  fields(11,1) = 'TRAC11  ',
+  fields(12,1) = 'TRAC12  ',
+  fields(13,1) = 'TRAC13  ',
+  fields(14,1) = 'TRAC14  ',
+  fields(15,1) = 'TRAC15  ',
+  fields(16,1) = 'TRAC16  ',
+  fields(17,1) = 'TRAC17  ',
+  fields(18,1) = 'TRAC18  ',
+  fields(19,1) = 'TRAC19  ',
+  fields(20,1) = 'TRAC20  ',
+  fields(21,1) = 'TRAC21  ',
+  fields(22,1) = 'TRAC22  ',
+  fields(23,1) = 'TRAC23  ',
+  fields(24,1) = 'TRAC24  ',
+  fields(25,1) = 'TRAC25  ',
+  fields(26,1) = 'TRAC26  ',
+  fields(27,1) = 'TRAC27  ',
+  fields(28,1) = 'TRAC28  ',
+  fields(36,1) = 'PAR     ',
+  fields(37,1) = 'PP      ',
+  fields(38,1) = 'Nfix    ',
+  fields(39,1) = 'Denit   ',
+  fields(40,1) = 'pH      ',
+  fields(41,1) = 'pCO2    ',
+#
+  filename( 2) = '2d',
+#  frequency(2) = 2592000.,
+  frequency(2) = 432000.,
+  fields( 1,2) = 'fluxCO2 ',
+  fields( 2,2) = 'gDICsurf',
+  fields( 3,2) = 'gALKsurf',
+  fields( 4,2) = 'gO2surf ',
+#
+ &
+
+# Parameter for Diagnostics of per level statistics:
+#-----------------
+# for each output-stream:
+#  stat_fname(n) : prefix of the output file name (only 8.c long) for
+#outp.stream n
+#  stat_freq(n):< 0 : write snap-shot output every |stat_freq| seconds
+#               > 0 : write time-average output every stat_freq seconds
+#  stat_phase(n)    : write at time = stat_phase + multiple of |stat_freq|
+#  stat_region(:,n) : list of "regions" (default: 1 region only=global)
+#  stat_fields(:,n) : list of diagnostics fields (8.c) (see
+#"available_diagnostics.log"
+#                 file for the list of all available diag. in this particular
+#config)
+#-----------------
+ &DIAG_STATIS_PARMS
+ diagst_mnc=.FALSE.,
+     stat_freq(1:3)= 3*10800.,
+    stat_phase(1:3)= 3*0.,
+ stat_fields(1,1)= 'PP      '
+ stat_fields(1,2)= 'Nfix    '
+ stat_fields(1,3)= 'Denit   '
+    stat_fname(1)= 'statsPP',
+    stat_fname(2)= 'statsNfix',
+    stat_fname(3)= 'statsDenit',
+ &

@@ -1,0 +1,25 @@
+ &OFFLINE_PARM01
+  UvelFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DDuvel/DDuvel',
+  VvelFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DDvvel/DDvvel',
+  WvelFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DDwvel/DDwvel',
+  GMwxFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DGMkwx/DGMkwx',
+  GMwyFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DGMkwy/DGMkwy',
+  GMwzFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DGMkwz/DGMkwz',
+# ConvFile= 'input_off/Convtave',
+  SaltFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DDsalt/DDsalt',
+  ThetFile= '/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DDtheta/DDtheta',
+  SFluxFile='/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DFOSflux/DFOSflux',
+# HFluxFile=' ',
+  KPP_DiffSFile='/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DKPPdiffs/DKPPdiffs',
+  KPP_ghatKFile='/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/DKPPghatK/DKPPghatK',
+### offGen2DFile='/lustre/isaac/proj/UTK0105/Darwin/data/ECCO_Iter3.73daily/SIarea/SIarea',
+ &end
+
+ &OFFLINE_PARM02
+  offlineIter0=78912,
+  deltaToffline=3600.,
+  offlineForcingPeriod=86400.,
+  offlineForcingCycle=31104000.,
+  offlineLoadPrec=32,
+ &end
+
