@@ -3,7 +3,7 @@ closure model
 
 source code and configuration files for the implementation of the **closure models** under the **Darwin-MITgcm**.
 
-Enclosed here are the necessary files to reproduce results in our main paper, that need to be combined with the base [Darwin-MITgcm code](https://gitlab.com/darwinproject/gud). Building and execution are dependent upon architecture used to run the code, and we refer to the [Darwin-MITgcm documentation](https://darwin3.readthedocs.io/en/latest/overview/overview.html) for guidance.  Large input files for the MITGCM offline ECCO simulation and DARWIN model inputs will need to be acquired outside of github.
+Enclosed here are the necessary files to reproduce model results in our main paper, that need to be combined with the base [Darwin-MITgcm code](https://gitlab.com/darwinproject/gud). Building and execution are dependent upon architecture used to run the code, and we refer to the [Darwin-MITgcm documentation](https://darwin3.readthedocs.io/en/latest/overview/overview.html) for guidance.  Large input files for the MITGCM offline ECCO simulation and DARWIN model inputs will need to be acquired outside of github.
 
 # Models
 Code was developed off the verification simulation [monod_eccov3_6+4](https://gitlab.com/darwinproject/gud/-/tree/gud/verification/monod_eccov3_6+4).
