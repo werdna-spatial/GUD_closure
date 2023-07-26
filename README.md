@@ -2,7 +2,7 @@
 closure model
 source code and configuration files for Darwin-MITgcm
 
-Enclosed here are the necessary files to reproduce results in our main paper, that need to be combined with the base Darwin-MITgcm code that is available elsewhere (https://gitlab.com/darwinproject/gud). Building and execution are dependent upon architecture used to run the code, and we refer to the Darwin-MITgcm documentation (https://darwin3.readthedocs.io/en/latest/overview/overview.html) for guidance.  Large input files for the MITGCM offline ecco simulation and othersinputs will need to be acquired outside of github.
+Enclosed here are the necessary files to reproduce results in our main paper, that need to be combined with the base Darwin-MITgcm code that is available elsewhere (https://gitlab.com/darwinproject/gud). Building and execution are dependent upon architecture used to run the code, and we refer to the Darwin-MITgcm documentation (https://darwin3.readthedocs.io/en/latest/overview/overview.html) for guidance.  Large input files for the MITGCM offline ecco simulation and DARWIN model inputs will need to be acquired outside of github.
 
 Code was developed off the verification simulation monod_eccov3_6+4 : https://gitlab.com/darwinproject/gud/-/tree/gud/verification/monod_eccov3_6+4
 
