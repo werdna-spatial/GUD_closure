@@ -34,7 +34,7 @@ shopt -s expand_aliases
 alias python='/usr/bin/python2'
 python2 --version
 python  --version
-VALpath=/lustre/isaac/proj/UTK0105/Darwin/GITLAB/gud-gud/verification/UTK
+VALpath=/lustre/isaac/proj/UTK0105/Darwin/GITLAB/gud-gud/verification/GUD_closure_DD
 USERpath=/lustre/isaac/scratch/ecarr/runs
 RUN_ID=$SLURM_JOB_ID
 TAG_ID='Gm_p2z2'

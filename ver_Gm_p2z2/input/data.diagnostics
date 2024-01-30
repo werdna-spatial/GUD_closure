@@ -45,6 +45,11 @@
   fields(29,1) = 'Denit   ',
   fields(30,1) = 'pH      ',
   fields(31,1) = 'pCO2    ',
+  fields(32,1) = 'UTK_holl',
+  fields(33,1) = 'UTK_2ZPP',
+  fields(34,1) = 'UTK_C   ',
+  fields(35,1) = 'UTK_D   ',
+  fields(36,1) = 'UTK_E   ',
 #
   filename( 2) = '2d',
 #  frequency(2) = 2592000.,

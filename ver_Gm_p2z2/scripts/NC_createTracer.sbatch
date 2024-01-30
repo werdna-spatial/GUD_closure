@@ -70,6 +70,7 @@ if [ "$process_gud" = true ]; then
                         "TRAC21" "TRAC22" "TRAC23" "TRAC24" "TRAC25" \
                         "TRAC26" "TRAC27" "TRAC28" "TRAC29" "TRAC30" \
                         "TRAC31" "TRAC32" "TRAC33" "TRAC34" "TRAC35" \
+			"UTK_holl" "UTK_2ZPP" "UTK_C" "UTK_D" "UTK_E" \
                        # "TRAC36" "TRAC37" "TRAC38" "TRAC39" "TRAC40" \
                        # "TRAC41" "TRAC42" "TRAC43" "TRAC44" "TRAC45" \
                        # "TRAC46" "TRAC47" "TRAC48" "TRAC49" "TRAC50" \
@@ -83,14 +84,26 @@ if [ "$process_gud" = true ]; then
     for Tracer_Name in ${gudArray[@]}; do
         
         echo $Tracer_Name
-        $RUN_DIR$RESscripts/gluemncbig -o $RUN_DIR/$ModelFilePre.$Tracer_Name.nc -v $Tracer_Name $RUN_DIR/mnc_test*/$ModelFilePre.0000000*.nc
-        nccopy -k netCDF-4 -d 2 -s  $ModelFilePre.$Tracer_Name.nc $RUN_DIR$RESpath/$ModelFilePreOut.$Tracer_Name.v4c.nc
+        $RUN_DIR$RESscripts/gluemncbig \
+		-o $RUN_DIR/$ModelFilePre.$Tracer_Name.nc \
+		-v $Tracer_Name $RUN_DIR/mnc_test*/$ModelFilePre.0000000*.nc
+        nccopy -k netCDF-4 -d 2 -s  $ModelFilePre.$Tracer_Name.nc $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
         rm $ModelFilePre.$Tracer_Name.nc
         # add calendar 360day to T for appropriate cftime interpretation
-        ncatted -a calendar,T,c,c,'360_day' $RUN_DIR$RESpath/$ModelFilePreOut.$Tracer_Name.v4c.nc
+        ncatted -a calendar,T,c,c,'360_day' $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
+	# set the time units
+        ncatted -a units,T,o,c,'seconds since 2000-01-01' $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
+        # convert Zmd depth to Z. This is a dif between tracer output and diag
+        python3 $RUN_DIR$RESscripts/Zmd2Z.py \
+		-grid  $RUN_DIR$RESscripts/grid.v4c.nc \
+ 		-fin $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc \
+		-fout $RUN_DIR$RESpath/Z$ModelFilePreOut.$Tracer_Name.v4c.nc 
+	rm $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
         # I put Rename proj usr bin
-        python3 $RUN_DIR$RESscripts/MU_renameNCtrace.py -fn $ModelFilePreOut.$Tracer_Name.v4c.nc -D $RUN_DIR$RESpath
-	rm $ModelFilePreOut.$Tracer_Name.v4c.nc 
+        python3 $RUN_DIR$RESscripts/MU_renameNCtrace.py \
+		-fn Z$ModelFilePreOut.$Tracer_Name.v4c.nc \
+		-D $RUN_DIR$RESpath
+	rm $RUN_DIR$RESpath/Z$ModelFilePreOut.$Tracer_Name.v4c.nc 
     done
 else
 	echo "\$process_gud not run : $process_gud"    

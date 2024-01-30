@@ -46,7 +46,7 @@ C grazing
 
 C for quadratic grazing a la quota
 #undef  GUD_GRAZING_SWITCH
-
+C#define  GUD_GRAZING_SWITCH
 C compute palat from size ratios
 #undef  GUD_ALLOMETRIC_PALAT
 
