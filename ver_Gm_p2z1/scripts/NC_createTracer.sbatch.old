@@ -28,7 +28,6 @@ then
 else
 	echo "\$RUN_DIR   : $RUN_DIR"
 fi
-#RUN_DIR=/lustre/isaac/proj/UTK0105/ProjAnal/T41_mort/Model_runs/run_t41mort_5389956.apollo-acf
 RESpath=/NC_trace
 RESanal=/NC_analysis
 RESscripts=/scripts
@@ -70,7 +69,6 @@ if [ "$process_gud" = true ]; then
                         "TRAC21" "TRAC22" "TRAC23" "TRAC24" "TRAC25" \
                         "TRAC26" "TRAC27" "TRAC28" "TRAC29" "TRAC30" \
                         "TRAC31" "TRAC32" "TRAC33" "TRAC34" "TRAC35" \
-	        	"UTK_holl" "UTK_2ZPP" "UTK_C" "UTK_D" "UTK_E" \
                        # "TRAC36" "TRAC37" "TRAC38" "TRAC39" "TRAC40" \
                        # "TRAC41" "TRAC42" "TRAC43" "TRAC44" "TRAC45" \
                        # "TRAC46" "TRAC47" "TRAC48" "TRAC49" "TRAC50" \
@@ -84,26 +82,14 @@ if [ "$process_gud" = true ]; then
     for Tracer_Name in ${gudArray[@]}; do
         
         echo $Tracer_Name
-        $RUN_DIR$RESscripts/gluemncbig \
-		-o $RUN_DIR/$ModelFilePre.$Tracer_Name.nc \
-		-v $Tracer_Name $RUN_DIR/mnc_test*/$ModelFilePre.0000000*.nc
-        nccopy -k netCDF-4 -d 2 -s  $ModelFilePre.$Tracer_Name.nc $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
+        $RUN_DIR$RESscripts/gluemncbig -o $RUN_DIR/$ModelFilePre.$Tracer_Name.nc -v $Tracer_Name $RUN_DIR/mnc_test*/$ModelFilePre.0000000*.nc
+        nccopy -k netCDF-4 -d 2 -s  $ModelFilePre.$Tracer_Name.nc $RUN_DIR$RESpath/$ModelFilePreOut.$Tracer_Name.v4c.nc
         rm $ModelFilePre.$Tracer_Name.nc
         # add calendar 360day to T for appropriate cftime interpretation
-        ncatted -a calendar,T,c,c,'360_day' $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
-	# set the time units
-        ncatted -a units,T,o,c,'seconds since 2000-01-01' $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
-        # convert Zmd depth to Z. This is a dif between tracer output and diag
-        python3 $RUN_DIR$RESscripts/Zmd2Z.py \
-		-grid  $RUN_DIR$RESscripts/grid.v4c.nc \
- 		-fin $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc \
-		-fout $RUN_DIR$RESpath/Z$ModelFilePreOut.$Tracer_Name.v4c.nc 
-	rm $RUN_DIR$RESpath/ATT_$ModelFilePreOut.$Tracer_Name.v4c.nc
+        ncatted -a calendar,T,c,c,'360_day' $RUN_DIR$RESpath/$ModelFilePreOut.$Tracer_Name.v4c.nc
         # I put Rename proj usr bin
-        python3 $RUN_DIR$RESscripts/MU_renameNCtrace.py \
-		-fn Z$ModelFilePreOut.$Tracer_Name.v4c.nc \
-		-D $RUN_DIR$RESpath
-	rm $RUN_DIR$RESpath/Z$ModelFilePreOut.$Tracer_Name.v4c.nc 
+        python3 $RUN_DIR$RESscripts/MU_renameNCtrace.py -fn $ModelFilePreOut.$Tracer_Name.v4c.nc -D $RUN_DIR$RESpath
+	rm $ModelFilePreOut.$Tracer_Name.v4c.nc 
     done
 else
 	echo "\$process_gud not run : $process_gud"    
@@ -158,62 +144,5 @@ printf '%s\n' 'RESanal='"$RESanal" >> $RUN_DIR$RESscripts'/envvar.txt'
 printf '%s\n' 'RESscripts='"$RESscripts" >> $RUN_DIR$RESscripts'/envvar.txt'
 #
 cd $RUN_DIR
-######
-##  simple line graphs of Tracer_Name
-#echo run line graph
-#python3 $RUN_DIR$RESscripts/DA_multitracesumplot.py \
-#	-NCD $RUN_DIR$RESpath \
-#	-T $MODEL_RUNID \
-#	-D $RUN_DIR$RESanal \
-#	-L [c01,c02,c03]
-#######################################
-## Output based on the 3 last years
-##
-#cd $RUN_DIR
-#echo run DA_pt_p2z1_3yr
-#python3 $RUN_DIR$RESscripts/DA_pt_p2z1_3yr.py \
-#	-NCD $RUN_DIR$RESpath \
-#	-T $MODEL_RUNID \
-#	-D $RUN_DIR$RESanal
-###########
-## Graph like Ward et al
-##
-#echo run DA_stackCarbon
-#python3 $RUN_DIR$RESscripts/DA_stackCarbon.py \
-#	-NCD $RUN_DIR$RESpath \
-#	-T $MODEL_RUNID \
-#	-D $RUN_DIR$RESanal
-#############
-## globe map and hist of slopes
-## each cell over a 3yr summed depth
-#python3 $RUN_DIR$RESscripts/DA_RegGlbSlope.py \
-#	-NCD $RUN_DIR$RESpath \
-#	-T $MODEL_RUNID \
-#	-D $RUN_DIR$RESanal
-##
-############################################
-##
-## Single year stuff using GRPD_yr
-##
-#echo run MU_ag_grp_yr.py
-#python3 $RUN_DIR$RESscripts/MU_ag_grp_yr.py \
-#	-MD $RUN_DIR
-##
-#echo Ext_ZP_Data
-#python3 $RUN_DIR$RESscripts/MU_extpt_data.py \
-#	-NC $RUN_DIR$RESpath/GRPD_yr.nc  \
-#	-L $RUN_DIR/scripts/Ir_Hat_HACKcombo_unix.csv \
-#	-T $MODEL_RUNID \
-#	-PFO $RUN_DIR$RESpath/$MODEL_RUNID\_Ext_ZP_Data.csv 
-## 
-#echo Gen ZP multi cruise slope analysis
-#python3 $RUN_DIR$RESscripts/DA_ZPmulticruise.py \
-#	-DF $RUN_DIR$RESpath/$MODEL_RUNID\_Ext_ZP_Data.csv   \
-#	-T $MODEL_RUNID \
-#	-PFO $RUN_DIR$RESpath/PtVB_$MODEL_RUNID\_Ext_VB_Data.csv 
-#
-#
-#
-#	
-#
+
 echo process finished

@@ -21,6 +21,7 @@
  /
 ########################
  &GUD_PARAMS
+ hollexp= 2.0, 
  diaz_ini_fac= 0.1,
  gud_linFSConserve= T,
  gud_seed= 56,

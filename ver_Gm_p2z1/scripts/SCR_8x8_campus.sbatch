@@ -1,19 +1,20 @@
 #!/bin/bash 
 #SBATCH -J 8x8_darwin
 #SBATCH -A ACF-UTK0105
-#SBATCH --exclude=clr0812,clr0813
+#SBATCH --exclude=clr0812,clr0813,ilp1119,ilp1120
 #SBATCH --exclusive
-#SBATCH --nodes=1
-#SBATCH --cpus-per-task=64
-#SBATCH --time=48:00:00
+#SBATCH --nodes=2
+#SBATCH --ntasks=64
+#SBATCH --ntasks-per-node=32
+#SBATCH --time=12:00:00
 #SBATCH --output=/nfs/home/ecarr/logfiles/Gmp2z1.%j.out
 #SBATCH --error=/nfs/home/ecarr/logfiles/Gmp2z1.%j.err
-#SBATCH --qos=condo
-#SBATCH --partition=condo-dtalmy
+#SBATCH --qos=campus
+#SBATCH --partition=campus
 ##########################################
 #                                        #
 #   Output some useful job information.  #
-#                                        #
+#         --ntasks-per-node=2          --ntasks=16 --nodes=16                     #
 ##########################################
 
 echo ---Modules 
