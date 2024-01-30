@@ -24,3 +24,6 @@ Contained within each setup:
 
 # Support
 **/Support** contains scripts used to postprocess model output to prepare for analysis.
+
+# Paper_Data
+**/Paper Data**  contains utilized params and other files related to the paper published in <>.  It conforms with the input files available within the input dir of the various models.  Files generated here are the diagnostic files exported by the Darwin/MITgcm model runs. 
