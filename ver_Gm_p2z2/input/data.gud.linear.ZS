@@ -71,13 +71,11 @@
  grp_chl2cmax(:)= 7*.3,
  grp_acclimtimescl(:)= 7*.5,
  grp_acclimtimescl_denom(:)= 7*86400.,
-#
  logvolbase= -.9465,
  logvolinc= .513,
- logvol0ind(:)= 8, 9, 4, 1, 8, 6, 1, 4,
- grp_logvolind(:,8)= 10,15,
+ logvol0ind(:)= 8, 8, 3, 1, 8, 6, 1, 3,
+ grp_logvolind(:,8)= 9,14,
 # biovolfac(:)= 7*3.2583670100200877, 1.,
-#
  a_biosink(:)= 7*6.951416635391563E-7, 0.,  ! .05*dm**.85
  b_biosink(:)= 7*.2833333333333333, 0.,
  a_vmax_DIC(1)= 7.5,
@@ -98,12 +96,14 @@
 ## BACVIR
  grp_ExportFracPreyPred(1:7,8)= 7*1.0,
  grp_R_ChlC(8)= 0.,
+
 ## BACVIR
- a_graz(8)= 0.000266886,  ! 1/sec
+#
+ a_graz(8)= 0.0001345,  ! 1/sec
  b_graz(8)= -0.16,
 ## BACVIR
  grp_mort(:)= 7*1.6534391534391533e-07, 2.3148148148148148e-07,  ! 1/7days, 1/50days
- grp_mort2(:)= 7*0., 9.259259259259258e-07,  ! 16*.6/120/day
+ grp_mort2(:)= 7*0., 0.,  ! 16*.6/120/day
  grp_tempcoeff2= 7*.0003,
  grp_R_PC(:)= 8*0.008333333333333333,
  grp_R_FeC(:)= 4*0.008333333333333333E-3, 0.03333333333333333E-3, 3*0.008333333333333333E-3,
@@ -111,6 +111,6 @@
  grp_R_SiC(:)= 0.13333333333333333, 7*0.,
  grp_R_PICPOC(:)= 5*0., .8, 2*0.,
 ## BACVIR
- a_kg(8)= 15.,
+ a_kg(8)= 30.,
  b_kg(8)= 0.,
  /
