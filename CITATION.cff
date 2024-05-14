@@ -1,0 +1,10 @@
+authors:
+  - family-names: Carr
+    given-names: Eric
+  - family-names: Talmy
+    given-names: David
+title: “Code to explore closures for different food web structure”
+identifiers:
+  - type: doi
+    value: https://doi.org/10.5281/zenodo.11193902
+date-released: 2024-03-25
